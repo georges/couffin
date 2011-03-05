@@ -1,0 +1,56 @@
+<?php
+/*                                                                              
+    Couffin - A simple PHP shopping basket.                                    
+                                                                              
+    Copyright 2005 by Georges Auberger                                            
+	http://www.auberger.com/couffin
+                                                                                                                                                           
+    Couffin is free software; you can redistribute it and/or modify               
+    it under the terms of the GNU General Public License as published by      
+    the Free Software Foundation; either version 2 of the License, or         
+    (at your option) any later version.                                       
+                                                                              
+    Couffin is distributed in the hope that it will be useful,                    
+    but WITHOUT ANY WARRANTY; without even the implied warranty of            
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the              
+    GNU General Public License for more details.                              
+                                                                                                                                                            
+    You should have received a copy of the GNU General Public License         
+    along with this program; if not, you can find it here:                    
+    http://www.gnu.org/copyleft/gpl.html                                      
+*/
+class shippingManager {
+
+	var $shippingRates;
+
+	function shippingManager($shippingRates) {
+		$this->shippingRates = $shippingRates;
+	}
+	
+	function computeShipping($weight) {
+		// Only first shipping method supported
+		reset($this->shippingRates);
+		$shippingRate = current($this->shippingRates);
+
+		if ($weight == 0) {
+			return 0;
+		} else {
+			$rate = $shippingRate[ceil($weight)];
+			if ($rate > 0) {
+				return $rate;
+			} else {
+				reset($shippingRate);
+				for ($i=1;$i<count($shippingRate);$i++) {     				next($shippingRate);				}
+				// Flat rate for heavier stuff. Returns the last price.
+				return current($shippingRate);
+			}
+		}
+	}
+
+	function getShippingMethod() {
+		// Only first shipping method supported
+		reset($this->shippingRates);
+		return key($this->shippingRates);	
+	}
+}
+?>

@@ -1,0 +1,39 @@
+<?php
+/*                                                                              
+    Couffin - A simple PHP shopping basket.                                    
+                                                                              
+    Copyright 2005 by Georges Auberger                                            
+	http://www.auberger.com/couffin
+                                                                                                                                                           
+    Couffin is free software; you can redistribute it and/or modify               
+    it under the terms of the GNU General Public License as published by      
+    the Free Software Foundation; either version 2 of the License, or         
+    (at your option) any later version.                                       
+                                                                              
+    Couffin is distributed in the hope that it will be useful,                    
+    but WITHOUT ANY WARRANTY; without even the implied warranty of            
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the              
+    GNU General Public License for more details.                              
+                                                                                                                                                            
+    You should have received a copy of the GNU General Public License         
+    along with this program; if not, you can find it here:                    
+    http://www.gnu.org/copyleft/gpl.html                                      
+*/
+
+class product {
+	var $name;
+	var $url;
+	var $img;
+	var $price;
+	var $weight;
+	var $description;
+	function product($name, $url, $img, $price, $weight, $description) {
+		$this->name = $name;
+		$this->url = $url;
+		$this->img = $img;
+		$this->price = $price;
+		$this->weight = $weight;
+		$this->description = $description;
+	}
+}
+?>

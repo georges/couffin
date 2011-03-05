@@ -1,0 +1,116 @@
+<?php
+/*                                                                              
+    Couffin - A simple PHP shopping basket.                                    
+                                                                              
+    Copyright 2005 by Georges Auberger                                            
+	http://www.auberger.com/couffin
+                                                                                                                                                           
+    Couffin is free software; you can redistribute it and/or modify               
+    it under the terms of the GNU General Public License as published by      
+    the Free Software Foundation; either version 2 of the License, or         
+    (at your option) any later version.                                       
+                                                                              
+    Couffin is distributed in the hope that it will be useful,                    
+    but WITHOUT ANY WARRANTY; without even the implied warranty of            
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the              
+    GNU General Public License for more details.                              
+                                                                                                                                                            
+    You should have received a copy of the GNU General Public License         
+    along with this program; if not, you can find it here:                    
+    http://www.gnu.org/copyleft/gpl.html                                      
+*/
+
+// Line item present in the cart
+class item {
+    var $id;
+    var $name;
+    var $qty = 0;
+    var $price = 0.0;
+    var $weight = 0;
+	var $url;
+
+    function extendedPrice() {
+        return ($this->qty * $this->price);
+    }
+}
+
+// Main class containing items
+class cart {
+    var $items = array();
+		
+    function getNbLineItems() {
+        return count($this->items);
+    }
+
+	function getTotalWeight() {
+		$totalWeight=0;
+        foreach ($this->items as $id => $item) {			
+            $totalWeight = $totalWeight + ($item->qty * $item->weight);
+        }
+		return $totalWeight;		
+	}
+
+    function getTotalItems() {
+        $totalItems=0;
+        foreach ($this->items as $id => $item) {
+            $totalItems = $totalItems + $item->qty;
+        }
+        return $totalItems;
+    }
+
+    function getTotalPrice() {
+        $totalPrice=0;
+        foreach ($this->items as $id => $item) {
+			$totalPrice = $totalPrice + $item->extendedPrice();
+        }
+        return $totalPrice;
+    }
+    
+    function isEmpty() {
+        return ($this->getNbLineItems()==0);
+    }
+    
+    function getItemQty($id) {
+        return $this->items[$id]->qty;
+    }
+    
+    function setItemQty($id, $qty) {
+		if ($qty == 0) {
+			$this->removeItem($id);
+		} else {
+			$this->items[$id]->qty = $qty;
+		}
+    }
+    
+    function addItem($id, $name, $qty, $price, $weight, $url) {
+        // If item exists, simply add more to it
+        if ($this->getItemQty($id) > 0) {
+            $this->setItemQty($id, $this->getItemQty($id) + $qty);
+        }
+        else {
+			$this->items[$id] = new item();
+            $this->items[$id]->name = $name;
+            $this->items[$id]->qty = $qty;
+            $this->items[$id]->price = $price;
+            $this->items[$id]->weight = $weight;
+            $this->items[$id]->url = $url;
+        }
+    }
+    
+    function removeItem($id) {
+        if (!$this->isEmpty())  {
+            $tmp=array();
+			foreach ($this->items as $idList => $item) {
+                if ($idList != $id) {
+                    $tmp[$idList] = $item;
+                }
+            };
+            $this->items=$tmp;
+        };
+    }
+	
+	function removeAll() {
+		$this->items=array();
+	}
+}
+?>

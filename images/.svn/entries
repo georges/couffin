@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="5"
+   name=""
+   committed-date="2006-02-12T22:03:04.182354Z"
+   url="svn+ssh://montreux.intra.auberger.com/repos/couffin/trunk/images"
+   last-author="gauberger"
+   kind="dir"
+   uuid="7e265e12-a00c-0410-93ce-e30a90ce7060"
+   repos="svn+ssh://montreux.intra.auberger.com/repos"
+   revision="5"/>
+<entry
+   committed-rev="5"
+   name="compass.jpg"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="42c08fe8cd45e2435e7c5d0c9034a709"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+<entry
+   committed-rev="5"
+   name="fish.jpg"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="f1d936f46f6f3b1acaaae78ce730f865"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+<entry
+   committed-rev="5"
+   name="mailbox.jpg"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="b846557b27e73f172092f3b99c7b209a"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+<entry
+   committed-rev="5"
+   name="couffin.gif"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="8dd66fe6e58d5e18fe9ea317e73b9e22"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+<entry
+   committed-rev="5"
+   name="ducky.jpg"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="cf9bf0296b0155873366fec9c4311ef1"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+</wc-entries>

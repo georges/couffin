@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="5"
+   name=""
+   committed-date="2006-02-12T22:03:04.182354Z"
+   url="svn+ssh://montreux.intra.auberger.com/repos/couffin/trunk/config"
+   last-author="gauberger"
+   kind="dir"
+   uuid="7e265e12-a00c-0410-93ce-e30a90ce7060"
+   repos="svn+ssh://montreux.intra.auberger.com/repos"
+   revision="5"/>
+<entry
+   committed-rev="5"
+   name="paymentProcessor.php"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="3f658e51b05e60cb14cac31762309f85"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+<entry
+   committed-rev="5"
+   name="settings.php"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="0c69502a4b3f9e9d5c6145662a6096e9"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+<entry
+   committed-rev="5"
+   name="products.php"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="e95932dd5f6c64dc33501ba9bfed1438"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+</wc-entries>

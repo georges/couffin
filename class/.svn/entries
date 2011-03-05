@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="5"
+   name=""
+   committed-date="2006-02-12T22:03:04.182354Z"
+   url="svn+ssh://montreux.intra.auberger.com/repos/couffin/trunk/class"
+   last-author="gauberger"
+   kind="dir"
+   uuid="7e265e12-a00c-0410-93ce-e30a90ce7060"
+   repos="svn+ssh://montreux.intra.auberger.com/repos"
+   revision="5"/>
+<entry
+   committed-rev="5"
+   name="taxManager.inc"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="20149fb7330db44d69ba8f4edcde6eb5"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+<entry
+   committed-rev="5"
+   name="cart.inc"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="47539158e3353854f780711e48d309a4"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+<entry
+   committed-rev="5"
+   name="orderProcessor.inc"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="40ea6b5b126b73861bb739b47f59e817"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+<entry
+   committed-rev="5"
+   name="invoice.inc"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="33ef8ec61cdda8c6e15a4318d2cb62e8"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+<entry
+   committed-rev="5"
+   name="shippingManager.inc"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="fed66d2b2845bd2a6a617c54da2a96f2"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+<entry
+   committed-rev="5"
+   name="product.inc"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="ee313951195e6259312b08606bc081d0"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+<entry
+   committed-rev="5"
+   name="customer.inc"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="f2d3ab436b5f850fef59dcee700c977e"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+<entry
+   committed-rev="5"
+   name="states.inc"
+   text-time="2006-02-12T22:03:52.000000Z"
+   committed-date="2006-02-12T22:03:04.182354Z"
+   checksum="11efab3562b81f21327fe963b4cfa3e5"
+   last-author="gauberger"
+   kind="file"
+   prop-time="2006-02-12T22:03:52.000000Z"/>
+</wc-entries>

@@ -1,0 +1,18 @@
+Couffin - A simple PHP shopping basket.                                    
+Ver 1.1
+
+Installation
+------------
+- Make sure you have PHP installed
+- Copy all the files into your working directory
+- Make sure that your PHP process has write access to the "invoice-sequence" file.
+
+Getting started
+---------------
+- Edit your settings in "config/settings.php"
+- Edit your product catalog in "config/products.php". Place your product images in the "images" folder.
+- Edit "config/paymentProcessor.php". This is the form that should get securely posted to your
+payment processor.
+- Configure your payment processor to hand over the flow back to "success.php" or "failure.php" page.
+- Customize the php templates to your liking.
+- You should not alter the files in the class directory.

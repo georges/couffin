@@ -1,0 +1,102 @@
+<?php
+/*                                                                              
+    Couffin - A simple PHP shopping basket.                                    
+                                                                              
+    Copyright 2005 by Georges Auberger                                            
+	http://www.auberger.com/couffin
+                                                                                                                                                           
+    Couffin is free software; you can redistribute it and/or modify               
+    it under the terms of the GNU General Public License as published by      
+    the Free Software Foundation; either version 2 of the License, or         
+    (at your option) any later version.                                       
+                                                                              
+    Couffin is distributed in the hope that it will be useful,                    
+    but WITHOUT ANY WARRANTY; without even the implied warranty of            
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the              
+    GNU General Public License for more details.                              
+                                                                                                                                                            
+    You should have received a copy of the GNU General Public License         
+    along with this program; if not, you can find it here:                    
+    http://www.gnu.org/copyleft/gpl.html                                      
+*/
+
+class orderProcessor {
+	var $from;
+	var $orderProcessing;
+
+	function orderProcessor($fromEmail, $orderProcessingEmail) {
+		$this->from = $fromEmail;	
+		$this->orderProcessing = $orderProcessingEmail;
+	}
+	
+	function formatBody($invoice) {
+		$body = "";
+		
+		$body = $body . "\r\nDate: " . $invoice->getDateCreated() . "\r\n";
+		$body = $body . "Order Number: $invoice->orderNumber\r\n";
+		
+		$body = $body . "\r\nBill To:\r\n";
+		$body = $body . "========\r\n";		
+		$body = $body . $invoice->customer->billingAddress->name . "\r\n";		
+		$body = $body . $invoice->customer->billingAddress->street1 . "\r\n";
+		if (strlen($invoice->customer->billingAddress->street2) > 0) {
+			$body = $body . $invoice->customer->billingAddress->street2 . "\r\n";
+		}
+		$body = $body . $invoice->customer->billingAddress->city . ", " . $invoice->customer->billingAddress->state . " " . $invoice->customer->billingAddress->zip . "\r\n";
+		$body = $body . $invoice->customer->phone . "\r\n";
+		$body = $body . $invoice->customer->email . "\r\n";
+	
+		$body = $body ."\r\nShip To:\r\n";
+		$body = $body . "========\r\n";	
+		$body = $body .$invoice->shippingAddress->name ."\r\n";
+		$body = $body .$invoice->shippingAddress->street1 ."\r\n";
+		if (strlen($invoice->shippingAddress->street2) > 0) {		
+			$body = $body .$invoice->shippingAddress->street2 ."\r\n";
+		}
+		$body = $body .$invoice->shippingAddress->city .", ". $invoice->shippingAddress->state ." ". $invoice->shippingAddress->zip ."\r\n";
+	
+		$body = $body ."\r\nShip Via: " . $invoice->getShippingMethod() . "\r\n";		
+		$body = $body ."\r\nItems:\r\n";
+			
+		foreach ($invoice->cart->items as $id => $item) { 
+			$body = $body . "$id  " . str_replace("&#8482;", "", $item->name) . "  $item->qty x $".number_format($item->price, 2)." = $".number_format($item->extendedPrice(), 2)."\r\n";
+		}
+	
+		$body = $body ."\r\nSub-total: $". number_format($invoice->getSubTotal(), 2);
+		$body = $body ."\r\nTax (".number_format($invoice->getTaxRate()*100, 2)." %): $". number_format($invoice->getTaxAmount(), 2);
+		$body = $body ."\r\nShipping (".number_format($invoice->cart->getTotalWeight(), 2)." lb): $".number_format($invoice->getShippingAmount(), 2);
+		$body = $body ."\r\nTOTAL: $". number_format($invoice->getTotal(), 2);
+
+		return $body;
+	}
+			
+	function sendMailToCustomer($invoice) {
+		$to = $invoice->customer->billingAddress->name . " <" . $invoice->customer->email . ">";			
+		$headers = "From: ". $this->from ."\n";
+	
+		$body = "Dear " . $invoice->customer->billingAddress->name . ",\r\n";		
+		$body = $body . "\r\nThank you for your order. This automated e-mail serves as your receipt. Your order is summarized below.\r\n";
+	
+		$body = $body . $this->formatBody($invoice);		
+		return 	mail($to, "Your order #$invoice->orderNumber", $body, $headers);
+	}
+
+	function sendMailToWarehouse($invoice) {
+		$headers = "From: ". $this->from ."\n";
+		
+		$forwarded_ip = $_SERVER["HTTP_X_FORWARDED_FOR"]; 
+		$remote_addr = $_SERVER["REMOTE_ADDR"]; 
+	
+		// Proxy user?
+		if (strlen($forwarded_ip) > 0) {
+			$body = "User IP: $forwarded_ip (".gethostbyaddr($forwarded_ip).") via proxy $remote_addr (".gethostbyaddr($remote_addr).")\r\n";
+		} else {
+			$body = "User IP: $remote_addr (".gethostbyaddr($remote_addr).")\r\n";
+		}
+		$body = $body . "User Agent: ". $_SERVER['HTTP_USER_AGENT']. "\r\n";
+		
+		$body = $body . $this->formatBody($invoice);
+		return 	mail($this->orderProcessing, "Order #$invoice->orderNumber", $body, $headers);
+	}
+}
+?>

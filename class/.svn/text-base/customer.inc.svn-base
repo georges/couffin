@@ -1,0 +1,100 @@
+<?php
+/*                                                                              
+    Couffin - A simple PHP shopping basket.                                    
+                                                                              
+    Copyright 2005 by Georges Auberger                                            
+	http://www.auberger.com/couffin
+                                                                                                                                                           
+    Couffin is free software; you can redistribute it and/or modify               
+    it under the terms of the GNU General Public License as published by      
+    the Free Software Foundation; either version 2 of the License, or         
+    (at your option) any later version.                                       
+                                                                              
+    Couffin is distributed in the hope that it will be useful,                    
+    but WITHOUT ANY WARRANTY; without even the implied warranty of            
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the              
+    GNU General Public License for more details.                              
+                                                                                                                                                            
+    You should have received a copy of the GNU General Public License         
+    along with this program; if not, you can find it here:                    
+    http://www.gnu.org/copyleft/gpl.html                                      
+*/
+
+class address {
+	var $name;
+	var $street1;
+	var $street2;
+	var $city;
+	var $zip;
+	var $state;
+	var $country;
+
+	function isNameValid() {
+		return strlen($this->name) > 0;
+	}
+
+	function isStreet1Valid() {
+		return strlen($this->street1) > 0;
+	}
+
+	function isCityValid() {
+		return strlen($this->city) > 0;
+	}
+
+	function isZipValid() {
+		return 	strlen($this->zip) == 5;
+	}
+
+	function isStateValid() {
+		return	strlen($this->state) == 2;
+	}
+
+	function isCountryValid() {
+		return	strlen($this->country) > 0;
+	}
+
+	function validate() {
+		return $this->isNameValid() &&	
+			$this->isStreet1Valid() &&	
+			$this->isCityValid() &&	
+			$this->isZipValid() &&	
+			$this->isStateValid() && 
+			$this->isCountryValid();
+	}
+
+}
+
+class customer {
+    var $billingAddress;
+    var $email;
+    var $phone;
+	
+	function customer() {
+		$this->billingAddress = new address;
+		// Only expect US customers for now
+		$this->billingAddress->country = "USA";
+	}
+	
+	function getName() {
+		return $this->billingAddress->name;
+	}
+	
+	function validateEmail($emailToValidate) {
+		return ereg('^[A-z0-9._-]+@[A-z0-9][A-z0-9-]*(.[A-z0-9_-]+)*.([A-z]{2,6})$', $emailToValidate);
+	}
+
+	function isEmailValid() {
+		return $this->validateEmail($this->email);
+	}
+
+	function isPhoneValid() {
+		// 10 digits number
+		return ereg('^[0-9]{10}$', $this->phone);
+	}
+
+	function validate() {
+		return $this->billingAddress->validate() && $this->isEmailValid() && $this->isPhoneValid();
+	}
+}
+
+?>
